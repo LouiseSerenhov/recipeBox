@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+h1, li, .title {
+  font-family: 'Mina';
+}
+h1, li {
+  text-align: center;
+}
+.title {
+  background-color: #D8BFD8;
+  border: solid white 8px;
+  font-size: 20px;
+  text-align: left;
+  
+}
+
+.ingredients {
+  background: white;
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+  font-size: 18px;
+}
+
+
