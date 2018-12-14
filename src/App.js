@@ -49,7 +49,7 @@ class App extends Component {
     const itemsRef = firebase.database().ref('items');
     const item = {
       ingredients: this.state.ingredients,
-      name: this.state.title
+      name: this.state.name
     }
     itemsRef.push(item);
     this.setState({
@@ -85,15 +85,21 @@ class App extends Component {
           </div>
         </header>
         <div className='container'>
-
+        <section className='add-item'>
+                <form onSubmit={this.handleSubmit}>
+                  <input type="text" name="name" placeholder="What's your name?" onChange={this.handleChange} value={this.state.name} />
+                  <input type="text" name="ingredients" placeholder="What are you bringing?" onChange={this.handleChange} value={this.state.ingredients} />
+                  <button type = "submit">Add Item</button>
+                </form>
+          </section>
           <section className='display-item'>
             <div className="wrapper">
               <ul>
-                <PanelGroup accordion id="recipes">
-                  {this.state.items.map((item, index) => {
+              
+                  {this.state.items.map((item) => {
                     console.log(item.name);
                     console.log(item, "hela item");
-                    console.log(index, "iteration index")
+                   
 
                     return (
                       <li key={item.id}>
@@ -106,10 +112,10 @@ class App extends Component {
                       </li>
                     )
                   })}
-                </PanelGroup>
+ 
               </ul>
-              <Button onClick={this.showAddModal}>ADD RECIPE</Button>
-              <AddRecipe onShow={this.state.showAdd} onAdd={this.addRecipe} onAddModal={this.showAddModal} />
+              {/* <Button onClick={this.showAddModal}>ADD RECIPE</Button>
+              <AddRecipe onShow={this.state.showAdd} onAdd={this.addRecipe} onAddModal={this.showAddModal} /> */}
             </div>
           </section>
         </div>
