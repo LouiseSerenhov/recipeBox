@@ -1,6 +1,7 @@
 //import the necessary files
 import React from 'react';
 import {Modal,ControlLabel,FormGroup,FormControl,Button} from 'react-bootstrap';
+import firebase from '../firebase.js'; 
 //create a class for displaying the modal for adding a new recipe and export it
 export class AddRecipe extends React.Component {
   constructor(props) {//create a state to handle the new recipe
@@ -19,14 +20,26 @@ export class AddRecipe extends React.Component {
   }
   handleSubmit(e) {//get the recipe data, manipulate it and call the function for creating a new recipe
     e.preventDefault();
+    const itemsRef = firebase.database().ref('items');
     const onAdd = this.props.onAdd;
     const regExp = /\s*,\s*/;
     var newName = this.state.name;
     var newIngredients = this.state.ingredients.split(regExp);
     var newRecipe = {name: newName, ingredients: newIngredients};
     onAdd(newRecipe);
-    this.setState({name: "", ingredients: ""});
+    const item = {
+      ingredients: newIngredients,
+      name: newName
+      
+    }
+    itemsRef.push(item);
+    this.setState({
+      ingredients: '',
+      name: ''
+    });
   }
+
+  
   handleCancel() {
     const onAddModal = this.props.onAddModal;
     this.setState({name: "", ingredients: ""});
