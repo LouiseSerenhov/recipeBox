@@ -100,7 +100,7 @@ class App extends Component {
             <div className="wrapper">
               <ul>
               
-                  {this.state.items.map((item, index) => {
+                  {this.state.items.map((item) => {
                     console.log(item.name);
                     console.log(item, "hela item");
                 
@@ -109,7 +109,7 @@ class App extends Component {
                         <h3 onClick = {this.toggle} className="title"> {item.name}</h3>
                         <div>
                           {this.state.toggleOn && (
-                             item[index].ingredients.map((ingredient) => {
+                             item.ingredients.map((ingredient) => {
                              return <p className="ingredients">{ingredient}</p>
                             })
                           )}
